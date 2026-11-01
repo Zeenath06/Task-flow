@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TaskFlow – Task Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div>
+      <h1>TaskFlow</h1>
+      <p id="subtitle">Plan your day, finish what matters.</p>
+    </div>
+    <div class="ring" aria-label="Progress">
+      <svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.9"/><circle id="arc" class="fg" cx="18" cy="18" r="15.9"/></svg>
+      <span id="pct">0%</span>
+    </div>
+  </header>
+
+  <form id="addForm" class="add">
+    <input id="title" type="text" placeholder="What needs to be done?" maxlength="100" required aria-label="Task title">
+    <input id="due" type="date" aria-label="Due date">
+    <select id="priority" aria-label="Priority">
+      <option value="low">Low</option>
+      <option value="medium" selected>Medium</option>
+      <option value="high">High</option>
+    </select>
+    <button type="submit">Add task</button>
+  </form>
+
+  <div class="tools">
+    <div class="filters" role="tablist">
+      <button class="f active" data-f="all">All</button>
+      <button class="f" data-f="active">Active</button>
+      <button class="f" data-f="done">Done</button>
+    </div>
+    <input id="search" type="search" placeholder="Search tasks" aria-label="Search tasks">
+  </div>
+
+  <ul id="list" class="list"></ul>
+  <p id="empty" class="empty" hidden>No tasks here. Add one above to get started.</p>
+
+  <footer class="foot">
+    <span id="count">0 tasks left</span>
+    <button id="clear" class="link">Clear completed</button>
+  </footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
