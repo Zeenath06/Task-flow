@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>Orbit — Smart Task Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Orbit home"><span class="brand-mark">◉</span><span>orbit<span class="brand-dot">.</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active" data-view="all"><span>▦</span> Overview <kbd>⌂</kbd></button>
+      <button class="nav-item" data-view="active"><span>◷</span> In progress</button>
+      <button class="nav-item" data-view="done"><span>✓</span> Completed</button>
+      <div class="side-label second-label">FOCUS MODE</div>
+      <div class="focus-card">
+        <div class="focus-orb">✦</div>
+        <strong>One thing at a time.</strong>
+        <p>Make space for your most important work.</p>
+        <button id="focusBtn" class="focus-button">Start focus session <span>↗</span></button>
+      </div>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Your workspace is saved locally</div>
+    </aside>
+
+    <section class="main-area">
+      <header class="header">
+        <div><p class="eyebrow" id="todayLabel">YOUR DAILY COMMAND CENTER</p><h1>Make today <span>count.</span></h1><p class="header-sub">Small steps. Serious momentum.</p></div>
+        <div class="header-actions"><button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">☼</button><div class="avatar">O</div></div>
+      </header>
+
+      <section class="welcome-strip">
+        <div><span class="live-pill"><i></i> LIVE OVERVIEW</span><h2 id="greeting">Ready when you are.</h2><p id="motivation">Every completed task is momentum earned.</p></div>
+        <div class="strip-art" aria-hidden="true"><div class="planet-ring"></div><div class="planet"></div><span class="star star-a">✦</span><span class="star star-b">·</span><span class="star star-c">✧</span></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Task statistics">
+        <article class="stat-card"><div class="stat-top"><span>Total tasks</span><span class="stat-icon purple">▤</span></div><strong id="totalStat">0</strong><small>Everything on your radar</small></article>
+        <article class="stat-card"><div class="stat-top"><span>In progress</span><span class="stat-icon blue">◷</span></div><strong id="activeStat">0</strong><small>Keep the momentum</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Completed</span><span class="stat-icon green">✓</span></div><strong id="doneStat">0</strong><small>Wins worth celebrating</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Overdue</span><span class="stat-icon orange">!</span></div><strong id="overdueStat">0</strong><small>Bring these back on track</small></article>
+      </section>
+
+      <section class="work-grid">
+        <div class="panel tasks-panel">
+          <div class="panel-heading"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Task board <span class="count-chip" id="boardCount">0</span></h2></div><button class="text-button" id="clear">Clear completed ↗</button></div>
+          <form id="addForm" class="add-form">
+            <label class="sr-only" for="title">Task title</label><input id="title" type="text" placeholder="What would move you forward today?" maxlength="100" required>
+            <div class="form-row"><label class="field"><span>Due date</span><input id="due" type="date"></label><label class="field"><span>Priority</span><select id="priority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label><button type="submit" class="add-button"><span>＋</span> Add task</button></div>
+          </form>
+          <div class="task-tools"><div class="filters" role="tablist" aria-label="Filter tasks"><button class="filter active" data-f="all">All tasks</button><button class="filter" data-f="active">In progress</button><button class="filter" data-f="done">Completed</button></div><label class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="Search your tasks..." aria-label="Search tasks"></label></div>
+          <ul id="list" class="task-list"></ul>
+          <div id="empty" class="empty-state" hidden><div class="empty-icon">✧</div><h3>No tasks in this orbit</h3><p>Add a task above and start building momentum.</p></div>
+          <div class="panel-foot"><span id="count">0 tasks left</span><span class="keyboard-hint">Tip: <kbd>Enter</kbd> to add a task</span></div>
+        </div>
+
+        <aside class="right-column">
+          <section class="panel progress-panel"><div class="panel-heading"><div><p class="eyebrow">YOUR MOMENTUM</p><h2>Progress</h2></div><span class="sparkle">✦</span></div>
+            <div class="progress-visual"><div class="progress-ring"><svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="49"></circle><circle id="arc" class="ring-value" cx="60" cy="60" r="49"></circle></svg><div class="ring-center"><strong id="pct">0%</strong><span>complete</span></div></div></div>
+            <p class="progress-caption" id="progressCaption">Your next win is one task away.</p><div class="progress-divider"></div><div class="mini-row"><span><i class="legend-dot done-dot"></i> Completed</span><strong id="miniDone">0</strong></div><div class="mini-row"><span><i class="legend-dot active-dot"></i> Remaining</span><strong id="miniLeft">0</strong></div>
+          </section>
+          <section class="panel priority-panel"><div class="panel-heading"><div><p class="eyebrow">SMART PLANNING</p><h2>Priority radar</h2></div><span class="radar-icon">⌁</span></div><p class="priority-intro">Put your energy where it matters.</p><div id="priorityRadar" class="priority-radar"></div></section>
+          <section class="quote-card"><span>✦ DAILY REMINDER</span><p>“Progress beats perfection. Keep going.”</p><small>— Your future self</small></section>
+        </aside>
+      </section>
+      <footer class="app-footer"><span>ORBIT · SMART TASK COMMAND CENTER</span><span>Built for focus, designed for momentum.</span></footer>
+    </section>
+  </main>
+
+  <dialog id="focusDialog" class="focus-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div class="focus-dialog-icon">✦</div><p class="eyebrow">DEEP WORK PROTOCOL</p><h2>Enter your focus zone.</h2><p class="dialog-copy">Choose one task. Silence the noise. Give it your full attention.</p><label class="field"><span>Focus task</span><select id="focusTask"></select></label><div class="timer" id="timer">25:00</div><div class="timer-actions"><button id="timerStart" class="add-button">Start timer</button><button id="timerReset" class="secondary-button">Reset</button></div><p class="timer-note">A simple Pomodoro-style timer. Stay on this page while it runs.</p></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
